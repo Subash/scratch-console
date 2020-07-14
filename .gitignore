@@ -1,0 +1,5 @@
+.DS_Store
+/build
+/node_modules
+/codesign.p12
+/build.config.js
