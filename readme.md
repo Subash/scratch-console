@@ -9,5 +9,5 @@ Play around with both browser and node js code in the same repl.
 * Send fetch requests then inspect results without any CORS restrictions.
 
 ### Download
-* [Windows](https://github.com/Subash/scratch-console/releases/download/1.0.0/Scratch.Console-Setup-1.0.0.exe)
-* [macOS](https://github.com/Subash/scratch-console/releases/download/1.0.0/Scratch.Console-1.0.0.zip)
+* [Windows](https://github.com/Subash/scratch-console/releases/download/1.1.0/Scratch.Console-Setup-1.1.0.exe)
+* [macOS](https://github.com/Subash/scratch-console/releases/download/1.1.0/Scratch.Console-1.1.0.zip)
