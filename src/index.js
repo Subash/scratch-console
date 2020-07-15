@@ -1,5 +1,6 @@
 const path = require('path');
 const url = require('url');
+const { homedir } = require('os');
 const { app, Menu, BrowserWindow } = require('electron');
 const squirrel = require('./squirrel-windows.js');
 const DEVTOOLS_PORT = 43849;
@@ -72,6 +73,10 @@ function createAppWindow() {
 
   // start app
   app.on('ready', ()=> {
+    // change cwd to home directory to allow users to require node modules from there
+    process.chdir(homedir());
+
+    // create windows
     global.emptyWindow = createEmptyWindow();
     global.appWindow = createAppWindow();
 
