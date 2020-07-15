@@ -73,15 +73,22 @@ function createAppWindow() {
 
   // start app
   app.on('ready', ()=> {
-    // change cwd to home directory to allow users to require node modules from there
+    // change cwd to home directory
     process.chdir(homedir());
 
     // create windows
     global.emptyWindow = createEmptyWindow();
     global.appWindow = createAppWindow();
 
+    // add home/node_module to globalPaths to allow users to require node modules from there
+    global.emptyWindow.once('ready-to-show', ()=> {
+      global.emptyWindow.webContents.executeJavaScript(`
+        require('module').globalPaths.push(require('path').resolve(require('os').homedir(), 'node_modules'));
+      `).catch(console.error.bind(console));
+    });
+
     // quit when app window is closed
-    global.appWindow.on('close', ()=> app.quit());
+    global.appWindow.once('close', ()=> app.quit());
 
     // remove application menu on windows
     if(process.platform === 'win32') Menu.setApplicationMenu(null);
