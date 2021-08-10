@@ -1,17 +1,18 @@
-const path = require('path');
 const url = require('url');
+const path = require('path');
 const { homedir } = require('os');
 const { app, Menu, BrowserWindow } = require('electron');
 const squirrel = require('./squirrel-windows.js');
+const { ipcMain } = require('electron/main');
 const DEVTOOLS_PORT = 43849;
 
 function createEmptyWindow() {
   const windowProps = {
     show: false,
     webPreferences: {
+      contextIsolation: false,
       backgroundThrottling: false,
       defaultEncoding: 'utf-8',
-      enableRemoteModule: true,
       experimentalFeatures: true,
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
@@ -35,9 +36,9 @@ function createAppWindow() {
     minHeight: 300,
     webPreferences: {
       webviewTag: true,
+      contextIsolation: false,
       backgroundThrottling: false,
       defaultEncoding: 'utf-8',
-      enableRemoteModule: true,
       experimentalFeatures: true,
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
@@ -85,6 +86,11 @@ function createAppWindow() {
       global.emptyWindow.webContents.executeJavaScript(`
         require('module').globalPaths.push(require('path').resolve(require('os').homedir(), 'node_modules'));
       `).catch(console.error.bind(console));
+    });
+
+    // show window when webview is ready
+    ipcMain.on('webview-ready', ()=> {
+      global.appWindow.show();
     });
 
     // quit when app window is closed

@@ -30,17 +30,17 @@ function hideTabs(tabbedPane) {
   `));
 
   tabbedPane.shadowRoot.appendChild(style);
-};
+}
 
 function hideTabIndicator(tabbedPane) {
   const indicator = tabbedPane.shadowRoot.querySelector('.tabbed-pane-tab-slider');
   indicator.style.display = 'none';
-};
+}
 
 function hideElementSelector(tabbedPane) {
   const selector = tabbedPane.shadowRoot.querySelector('.tabbed-pane-left-toolbar');
   selector.style.display = 'none';
-};
+}
 
 function hideSettings(tabbedPane) {
   const settings = tabbedPane.shadowRoot.querySelector('.tabbed-pane-right-toolbar');
@@ -53,7 +53,7 @@ function focusConsole(tabbedPane) {
   // tabs get focused on mousedown instead of click
   consoleTab.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
   consoleTab.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-};
+}
 
 (async ()=> {
   const tabbedPane = await getTabbedPane();

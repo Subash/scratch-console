@@ -1,10 +1,10 @@
+const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const path = require('path');
-const { remote } = require('electron');
 const DEVTOOLS_PORT = new URLSearchParams(window.location.search).get('port');
 
 async function showWindow() {
-  remote.getCurrentWindow().show();
+  ipcRenderer.send('webview-ready');
 }
 
 async function getWebSocketDebuggerUrl() {
@@ -30,7 +30,7 @@ async function loadWebView() {
 
 loadWebView()
   .then(showWindow)
-  .catch(err=> {
+  .catch((err)=> {
     showWindow();
-    alert(err.message)
+    alert(err.message);
   });
