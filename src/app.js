@@ -1,6 +1,6 @@
-const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const path = require('path');
+const { ipcRenderer } = require('electron');
 const DEVTOOLS_PORT = new URLSearchParams(window.location.search).get('port');
 
 async function showWindow() {
