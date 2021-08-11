@@ -39,7 +39,7 @@ async function createInstaller() {
     authors: 'Subash Pathak',
     description: 'Scratch Console',
     title: 'Scratch Console',
-    signWithParams: `/a /t http://timestamp.globalsign.com/scripts/timestamp.dll /f "${windowsCodesignCertificate}" /p "${windowsCodesignCertificatePassword}"`
+    signWithParams: `/a /tr http://timestamp.apple.com/ts01 /f "${windowsCodesignCertificate}" /p "${windowsCodesignCertificatePassword}"`
   });
   spinner.succeed();
 }
